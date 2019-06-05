@@ -15,7 +15,6 @@ fi
 mkdir -p dist
 
 for version in $VERSIONS; do
-    # skopeo inspect --raw "docker://registry.access.redhat.com/ubi${version}"
     archs=$(skopeo inspect --raw "docker://registry.access.redhat.com/ubi${version}" | \
         jq -r '.manifests | .[] | .platform.architecture')
     for arch in ${archs}; do
