@@ -14,3 +14,6 @@ addons:
 script:
     - make
     - du -sh dist/*
+branches:
+    only:
+        - master
