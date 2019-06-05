@@ -21,6 +21,6 @@ for version in $VERSIONS; do
     for arch in ${archs}; do
         skopeo --override-arch "${arch}" --override-os linux \
             copy "docker://registry.access.redhat.com/ubi${version}:latest" \
-            "docker-archive:dist/rhel${version}-${arch}.tar:registry.access.redhat.com/ubi${version}:latest-for-${arch}"
+            "docker-archive:dist/rhel${version}-${arch}.tar:quay.io/junaruga/multiarch-rhel:${version}-${arch}"
     done
 done
