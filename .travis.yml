@@ -1,0 +1,16 @@
+dist: xenial
+services: docker
+language: bash
+addons:
+    apt:
+        config:
+            retries: true
+        update: true
+        sources:
+            - sourceline: 'ppa:projectatomic/ppa'
+        packages:
+            - skopeo
+            - jq
+script:
+    - make
+    - du -sh dist/*
