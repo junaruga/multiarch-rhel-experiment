@@ -15,12 +15,11 @@ fi
 mkdir -p dist
 
 for version in $VERSIONS; do
-    # skopeo inspect --raw "docker://registry.access.redhat.com/ubi${version}"
     archs=$(skopeo inspect --raw "docker://registry.access.redhat.com/ubi${version}" | \
         jq -r '.manifests | .[] | .platform.architecture')
     for arch in ${archs}; do
         skopeo --override-arch "${arch}" --override-os linux \
             copy "docker://registry.access.redhat.com/ubi${version}:latest" \
-            "docker-archive:dist/rhel${version}-${arch}.tar:registry.access.redhat.com/ubi${version}:latest-for-${arch}"
+            "docker-archive:dist/rhel${version}-${arch}.tar:quay.io/junaruga/multiarch-rhel:${version}-${arch}"
     done
 done
